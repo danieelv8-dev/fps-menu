@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Nashville • Grafika & FPS</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+<main class="overlay" id="overlay" aria-hidden="true">
+  <section class="panel" role="dialog" aria-modal="true" aria-label="Project Nashville — ustawienia FPS">
+    <header class="panel-header">
+      <div class="logo" aria-label="Project Nashville">
+        <svg class="skyline" viewBox="0 0 108 60" aria-hidden="true" fill="none"><path d="M5 52V37h10V26h9v26m0-18h9V18h10v34m0-23h9V8h10v44m0-23h9V19h10v33m0-17h9v17h10V41h8v11" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M0 56h108" stroke="currentColor" stroke-width="2.5"/></svg>
+        <span class="logo-small">PROJECT</span><strong>NASHVILLE</strong>
+      </div>
+      <div class="heading"><div class="eyebrow">PANEL GRACZA <span>•</span> WYDAJNOŚĆ</div><h1>GRAFIKA <span>&amp;</span> FPS</h1><p>Dostosuj wygląd i płynność rozgrywki do swojego komputera.</p></div>
+      <div class="header-actions"><span class="fps-counter"><span class="pulse"></span><b id="fpsNumber">—</b> FPS</span><button class="icon-btn close" id="closeButton" title="Zamknij panel" aria-label="Zamknij panel"><span data-icon="close"></span></button></div>
+    </header>
+
+    <div class="toolbar">
+      <div class="status-tags"><span class="tag purple"><span data-icon="bolt"></span> PROFIL: <b id="currentProfile">DOMYŚLNY</b></span><span class="tag cyan"><span data-icon="layers"></span> FILTR: <b id="currentFilter">BRAK</b></span></div>
+      <div class="quick-actions"><button class="tiny-btn" id="resetButton"><span data-icon="reset"></span> RESET</button><button class="tiny-btn" id="potatoButton"><span data-icon="flame"></span> POTATO</button><button class="tiny-btn" id="pvpButton"><span data-icon="target"></span> PVP / STREFY</button></div>
+    </div>
+
+    <div class="search-holder"><span data-icon="search"></span><input type="search" id="searchInput" placeholder="Szukaj profilu, filtru, ustawień..." aria-label="Wyszukaj ustawienia"><kbd>/fps</kbd></div>
+
+    <nav class="tabs" aria-label="Sekcje ustawień"><button class="tab active" type="button" data-tab="profiles"><span data-icon="bolt"></span> Profile FPS</button><button class="tab" type="button" data-tab="filters"><span data-icon="palette"></span> Filtry kolorów</button><button class="tab" type="button" data-tab="advanced"><span data-icon="sliders"></span> Streaming / Render</button></nav>
+
+    <div class="content">
+      <div class="info-strip"><span data-icon="info"></span> Gotowe profile dostosowane do rozgrywki na Project Nashville <span class="info-mark">PN / FPS</span></div>
+      <section id="profilesSection" class="section active" aria-label="Profile FPS"><div class="profile-list" id="profileList"></div></section>
+      <section id="filtersSection" class="section" aria-label="Filtry kolorów"><div class="section-heading"><h2>Filtry kolorów</h2><p>Wybierz wygląd obrazu. Zmiany dotyczą tylko Twojej gry.</p></div><div class="filter-grid" id="filterGrid"></div></section>
+      <section id="advancedSection" class="section" aria-label="Opcje zaawansowane"><div class="section-heading"><h2>Streaming i renderowanie</h2><p>Ustawienia zaawansowane wpływają na ilość detali oraz budżet modeli.</p></div><div class="advanced-card">
+        <div class="range-head"><div><strong>Zasięg renderowania (LOD)</strong><p>Niższa wartość = mniej detali w oddali.</p></div><div class="value" id="lodValue">1.00x</div></div><input id="lodSlider" type="range" min="0.40" max="1.00" step="0.05" value="1.00"><div class="range-labels"><span>Wydajność • 0.40x</span><span>Jakość • 1.00x</span></div>
+        <div class="setting-row"><div class="setting-icon"><span data-icon="person"></span></div><div class="setting-copy"><strong>Ograniczony budżet modeli postaci</strong><p>Oszczędza pamięć modeli NPC. Może powodować doczytywanie.</p></div><label class="switch"><input type="checkbox" id="pedBudget"><span class="slider"></span></label></div>
+        <div class="setting-row"><div class="setting-icon"><span data-icon="car"></span></div><div class="setting-copy"><strong>Ograniczony budżet modeli pojazdów</strong><p>Mniejszy budżet strumieniowania pojazdów.</p></div><label class="switch"><input type="checkbox" id="vehicleBudget"><span class="slider"></span></label></div>
+        <div class="setting-row"><div class="setting-icon"><span data-icon="sparkle"></span></div><div class="setting-copy"><strong>Ukryj niektóre ślady i dekoracje</strong><p>Ogranicza lokalne renderowanie decalów, np. śladów.</p></div><label class="switch"><input type="checkbox" id="hideDecals"><span class="slider"></span></label></div>
+        <div class="advanced-actions"><span id="saveInfo">Zmiana tych ustawień stworzy własny profil.</span><button class="primary-btn" id="saveAdvanced"><span data-icon="check"></span> ZAPISZ USTAWIENIA</button></div>
+      </div></section>
+    </div>
+    <footer class="panel-footer"><span><span class="footer-dot"></span> PROJECT NASHVILLE <span class="footer-separator">/</span> TWOJE USTAWIENIA</span><span>Przyrost FPS zależy od sprzętu i sytuacji w grze.</span></footer>
+  </section>
+  <div class="toast" id="toast" role="status"></div>
+</main>
+</body>
+</html>
